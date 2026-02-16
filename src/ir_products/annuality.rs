@@ -28,8 +28,9 @@ impl Anuality {
 
     pub fn calc_money_value_compound_interest(&self, ir: f64, term_years: i32) -> f64 {
         let mut sum = 0.0;
-        for i in 0..(self.term_years - 1) {
-            sum = sum + self.annual_payment * (1.0 + ir / 100.0).powi(i);
+        while term_years > 0 {
+            sum = sum + self.annual_payment * (1.0 + ir / 100.0).powi(term_years);
+            term_years = term_years - 1;
         }
         sum
     }
